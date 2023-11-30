@@ -1,0 +1,87 @@
+{% extends 'base_starrail.html' %}
+{% block title %}模擬宇宙攻略大全{% endblock %}
+{% block contents %}
+{% load static %}
+
+
+<main class="container">
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+        <div class="col-lg-6 px-0">
+            <h1 class="display-4 fst-italic">模擬宇宙の概要</h1>
+        </div>
+    </div>
+
+    <!--ここから各コンテンツに別れるイメージ-->
+    <div class="row g-5">
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                模擬宇宙とは</h3>
+            <p>
+                模擬宇宙の概要<br>
+                場所　宇宙ステーション「ヘルタ」　ヘルタのオフィス<br>
+                解放条件　序章「ブルー」編クリア<br>
+                報酬　星玉　恒常ガチャチケ　ヘルタ　各オーナメントｅｔｃ<br>
+                ポイントリセット　月曜5時<br>
+                <br>
+                模擬宇宙をプレイするとリザルト結果に応じてポイントが入手できる。ポイントは左下から確認でき、各週入手したポイントの累計に応じて運命の足跡やヘルタ債券など貴重なアイテムが入手できる。
+                もらえるアイテム<br>
+
+                ・運命の足跡→キャラの軌跡強化に使用　（Lv.9から使用、各レベル一つにつき一個使用）<br>
+                ・ヘルタ債券→ヘルタショップにて限定光円錐やガチャチケ(恒常)と交換　(現状週のポイントで一枚と各宇宙の初回攻略ボーナスのみ獲得できるため使用に注意あり　詳しくはこちらからみたいな感じでリンク先に説明を)<br>
+                <br>
+                報酬一覧<br>
+                表で　各宇宙ごとに切り替えられる用に読み込み　ページングして<br>
+                <br>
+            </p>
+        </div>
+
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 2rem;">
+                <h4 class="fst-italic">Recent posts</h4>
+                <ul class="list-unstyled">
+                    {% for record in object_list %}
+                    {% if forloop.counter <= 3 %} <a
+                        class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                        href="{% url 'accounts:strategy_detail' record.pk %}">
+
+                        <img src="{{ record.image1.url }}" svg class="bd-placeholder-img" width="50%" height="96"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice"
+                            focusable="false">
+                        <rect width="100%" height="100%" fill="#777" />
+                        </svg>
+
+                        <div>
+                            <h6 class="txt_contents">{{record.title|truncatechars:10}}</h6>
+                            <small class="text-body-secondary">{{record.content|truncatechars:10}}</small>
+                        </div>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                </ul>
+                <div class="p-4">
+                    <h4 class="pb-4 mb-4 fst-italic border-bottom">Archives</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="{% url 'starrail:index' %}">模擬宇宙とは</a></li>
+                        <li><a href="{% url 'starrail:destiny' %}">運命について</a></li>
+                        <li><a href="{% url 'starrail:universe_3' %}">第三世界</a></li>
+                        <li><a href="{% url 'starrail:universe_4' %}">第四世界</a></li>
+                        <li><a href="{% url 'starrail:universe_5' %}">第五世界</a></li>
+                        <li><a href="{% url 'starrail:universe_6' %}">第六世界</a></li>
+                        <li><a href="{% url 'starrail:universe_7' %}">第七世界</a></li>
+                        <li><a href="{% url 'starrail:universe_8' %}">第八世界</a></li>
+                    </ol>
+                </div>
+
+                <div class="p-4">
+                    <h4 class="pb-4 mb-4 fst-italic border-bottom">公式</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="https://hsr.hoyoverse.com/ja-jp/home">DLはこちらから</a></li>
+                        <li><a href="https://twitter.com/houkaistarrail">X</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+</main>
+
+</section>
+{% endblock %}

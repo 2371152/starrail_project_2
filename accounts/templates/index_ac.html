@@ -1,0 +1,30 @@
+<!--p357-->
+{% extends 'base.html' %}
+
+{% block title %}攻略掲示板{% endblock %}
+
+{% block contents %}
+
+<!--p352-->
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">攻略掲示板</h1>
+            <p class="lead text-muted">自分なりの攻略法を共有しよう</p>
+            <p>
+                {% if user.is_authenticated %}
+                <a href="{% url 'accounts:post' %}" class="btn btn-primary my-2">投稿する</a>
+                <a href="{% url 'accounts:logout' %}" class="btn btn-primary my-2">ろぐあうと</a>
+                {% else %}
+                <a href="{% url 'accounts:signup' %}" class="btn btn-secondary my-2">今すぐさいんあっぷ！</a>
+                <a href="{% url 'accounts:login' %}" class="btn btn-secondary my-2">登録済みのお方はろぐいん</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</section>
+{% include "photos_list.html" %}
+
+{% include "pagination.html" %}
+
+{% endblock %}

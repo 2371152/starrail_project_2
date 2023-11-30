@@ -1,0 +1,116 @@
+{% extends 'base_starrail.html' %}
+{% block title %}第三世界{% endblock %}
+{% block contents %}
+{% load static %}
+
+
+<main class="container">
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+        <div class="img_contents">
+            <p>運命</p>
+        </div>
+    </div>
+
+    <div class="row g-5">
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                第三世界</h3>
+            <p>
+            <h5 class="sikiri_style">概要</h5>
+            <br>
+            <img class="kouryakuimg" src="{% static 'img/world_3_gaiyou.png' %}" width="45%" height="auto">
+            <img class="kouryakuimg" src="{% static 'img/w3_hensei.png' %}" width="45%" height="auto">
+            <p class="txt_box">全体的に物理と虚数が刺さるため壊滅主人公やヴェルトで靭性を削りながら攻略していくのがおすすめ。
+                ジェパード戦の項目でも触れるが取り巻きを召喚してくるため全体攻撃できるキャラを多めに連れていくことが大事。
+                始めたては火力も耐久も厳しいところもあるので虚無の運命を使って少しずつ削りながら回復をしていきたい。
+                豊穣1(ヒーラー)存護1(タンク)に範囲アタッカー2で編成したい。右手の画像ではナターシャなのかで耐久しつつセーバルで虚無の運命を回し、主人公の必殺技を回していきたい。
+            </p>
+            </p>
+
+            <p>
+            <h5 class="sikiri_style">オーナメント</h5>
+            <br>
+            <img class="kouryakuimg" src="{% static 'img/helta.png' %}" width="45%" height="auto">
+            <img class="kouryakuimg" src="{% static 'img/sensyu.png' %}" width="45%" height="auto">
+            <br>
+            <p class="txt_box">
+                第三世界で獲得できるオーナメントは宇宙封印セット、老いぬ仙船セットである。セット効果は画像の通りHPや攻撃力を高めることができる。
+                両方とも汎用性が高く、使用できるキャラが多いため序盤からでも扱いやすい。
+            </p>
+            </p>
+
+            <h5 class="sikiri_style">ジェパード戦</h5>
+            <br>
+            <img class="kouryakuimg" src="{% static 'img/world_3_3.png' %}" width="45%" height="auto">
+            <img class="kouryakuimg" src="{% static 'img/world_3_4.png' %}" width="45%" height="auto">
+            <p class="txt_box">
+                開始時にシルバーメイン兵を二人呼び出してくる。その後行動順を繰り上げして攻撃してくるためなるべく早めに取り巻きを倒していきたい。
+                また、ジェパードはこちらにターゲット状態を付与してくる。この状態では攻撃がそのキャラに集中するためHP管理を怠らず攻撃を続けよう。
+            </p>
+            <br>
+            <img class="kouryakuimg" src="{% static 'img/world_3_5.png' %}" width="45%" height="auto">
+            <img class="kouryakuimg" src="{% static 'img/world_3_6.png' %}" width="45%" height="auto">
+            <p class="txt_box">
+                2ゲージ突入時もシルバーメイン兵を二人召喚してくる。右側の画像のように敵全体にダメージが通らなくなるシールドが展開される。
+                この状態で規定のダメージを与えるとシールドが剝がれ敵全体に大ダメージが入る。このシールドは敵全体で共有されているため、全体攻撃で効率良くダメージを与えていく。
+            </p>
+            <br>
+            <img class="kouryakuimg" src="{% static 'img/world_3_7.png' %}" width="80%" height="auto">
+            <p class="txt_box">
+                3ゲージではシルバーメイン精鋭が召喚される。この精鋭は体力が高く倒しづらいため、なるべくジェパードを攻撃して早めの突破を狙いたい。
+                ここまでくればあと一息なので運命の反響や必殺技をフル稼働して攻略を目指そう。
+            </p>
+            </h3>
+        </div>
+
+        <!--ここから各コンテンツに別れるイメージ-->
+
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 2rem;">
+                <h4 class="fst-italic">Recent posts</h4>
+                <ul class="list-unstyled">
+                    {% for record in object_list %}
+                    {% if forloop.counter <= 3 %} <a
+                        class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                        href="{% url 'accounts:strategy_detail' record.pk %}">
+
+                        <img src="{{ record.image1.url }}" svg class="bd-placeholder-img" width="50%" height="96"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice"
+                            focusable="false">
+                        <rect width="100%" height="100%" fill="#777" />
+                        </svg>
+
+                        <div>
+                            <h6 class="txt_contents">{{record.title|truncatechars:10}}</h6>
+                            <small class="text-body-secondary">{{record.content|truncatechars:10}}</small>
+                        </div>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                </ul>
+                <div class="p-4">
+                    <h4 class="pb-4 mb-4 fst-italic border-bottom">Archives</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="{% url 'starrail:index' %}">模擬宇宙とは</a></li>
+                        <li><a href="{% url 'starrail:destiny' %}">運命について</a></li>
+                        <li><a href="{% url 'starrail:universe_3' %}">第一～三世界</a></li>
+                        <li><a href="{% url 'starrail:universe_4' %}">第四世界</a></li>
+                        <li><a href="{% url 'starrail:universe_5' %}">第五世界</a></li>
+                        <li><a href="{% url 'starrail:universe_6' %}">第六世界</a></li>
+                        <li><a href="{% url 'starrail:universe_7' %}">第七世界</a></li>
+                        <li><a href="{% url 'starrail:universe_8' %}">第八世界</a></li>
+                    </ol>
+                </div>
+
+                <div class="p-4">
+                    <h4 class="pb-4 mb-4 fst-italic border-bottom">公式サイト</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="https://hsr.hoyoverse.com/ja-jp/home">DLはこちらから</a></li>
+                        <li><a href="https://twitter.com/houkaistarrail">X</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+</main>
+
+{% endblock %}
